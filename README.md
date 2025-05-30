@@ -1,8 +1,8 @@
-# My Project Title
+# Dessert or Not? A Recipe for Classification
 
-by Suraj Rampure (rampure@ucsd.edu)
+by Minyoung Kim and Tanisha Kumar
 
-***Note***: If you choose a repo name and title as uninspired as the ones here, I will be quite sad.
+This project was not a piece of cake!
 
 ---
 
