@@ -8,7 +8,7 @@ This project was not a piece of cake!
 
 ## Introduction
 
-In this project, we studied the effectiveness of spice challenges in building team morale.
+In this project, we investigated the difference in calorie content between dessert and non-dessert holiday foods 🎂
 
 ---
 
