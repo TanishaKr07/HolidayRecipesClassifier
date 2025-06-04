@@ -113,18 +113,16 @@ For this analysis, we compared the calorie distribvution of holiday desserts and
 For this section, we investigated the relationship between recipe type (homemade or not), calorie group, and two key variables: average calories and average rating.
 We grouped the dataset by the homemade status (True or False) and cal_group (Low, Medium, High, Very High), followed by creating a summary table that displays the mean calorie count and mean user rating for each subgroup.
 
-|           |           |  calories    |  avg_rating  |
-| homemade  | cal_group | :--------    | :--------    | 
-| :-------- | :-------- |              |              |
-| False     | Low       |  84.729656   |   4.671719   |
-|           | Medium    |  203.754273  |   4.661790   |
-|           | High      |  351.186114  |   4.662766   |
-|           | Very High |  650.514378  |   4.646736   |
-| :-------- |:--------  | :--------    | :--------    |             
-| True      | Low       |  62.638462   |   4.734283   |
-|           | Medium    |  214.808333  |   4.699973   |
-|           | High      |  356.716667  |   4.713766   |
-|           | Very High |  618.090909  |   4.680204   |
+| homemade | cal_group | calories | avg_rating |
+|----------|-----------|----------|------------|
+| False | Low | 84.729656 | 4.671719 |
+| False | Medium | 203.754273 | 4.66179 |
+| False | High | 351.186114 | 4.662766 |
+| False | Very High | 650.514378 | 4.646736 |
+| True | Low | 62.638462 | 4.734283 |
+| True | Medium | 214.808333 | 4.699973 |
+| True | High | 356.716667 | 4.713766 |
+| True | Very High | 618.090909 | 4.680204 |
 
 The resulting table shows some interesting patterns:
 
