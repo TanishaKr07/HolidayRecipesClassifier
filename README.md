@@ -152,17 +152,17 @@ represents the number of steps in the recipe.
 
 **Reviews & Minutes**
 
-**Null Hypothesis:** The missingness of reviews does not depend on
+*Null Hypothesis:* The missingness of reviews does not depend on
 the minutes required to prepare the recipe.
 
-**Alternative Hypothesis:** The missingness of reviews does depend
+*Alternative Hypothesis:* The missingness of reviews does depend
 on the minutes required to prepare the recipe.
 
-**Test Statistic:** The absolute difference in mean in the minutes
+*Test Statistic:* The absolute difference in mean in the minutes
 of the distribution of the group with missing reviews and the
 distribution of the group without missing reviews.
 
-**Significance Level:** 0.05
+*Significance Level:* 0.05
 
 **PLOTLY PLOT REQUIRED!!**
 
@@ -181,16 +181,16 @@ One plausible explanation is that people may prefer quicker recipes, especially 
 
 **Reviews & Number of Steps**
 
-**Null Hypothesis:** The missingness of reviews does not depend on
+*Null Hypothesis:* The missingness of reviews does not depend on
 the number of steps in the recipe.
 
-**Alternative Hypothesis:** The missingness of reviews does depend
+*Alternative Hypothesis:* The missingness of reviews does depend
 on the number of steps in the recipe.
 
-**Test Statistic:** The absolute difference in mean in the number
+*Test Statistic:* The absolute difference in mean in the number
 of steps of the distribution of the group with missing reviews and the distribution of the group without missing reviews.
 
-**Significance Level:** 0.05
+*Significance Level:* 0.05
 
 We ran another permutation test by shuffling the missingness of review for 1000 times to collect 1000 simulating mean differences in the two distributions as described in the test statistic.
 
@@ -209,14 +209,14 @@ By "dessert" holiday recipes, we are talking about the holiday recipes that expl
 
 To investigate the question, we ran a permutation test with the following hypotheses, test statistic, and significance level.
 
-**Null Hypothesis:** Among holiday recipes, there is no significant difference in the calorie content between
+*Null Hypothesis:* Among holiday recipes, there is no significant difference in the calorie content between
 desserts and non-desserts.
 
-**Alternative Hypothesis:** Among holiday recipes, desserts and non-desserts have significantly different calorie content.
+*Alternative Hypothesis:* Among holiday recipes, desserts and non-desserts have significantly different calorie content.
 
-**Test Statisic:** The absolute difference in mean calories between the dessert and non-dessert holiday recipes.
+*Test Statisic:* The absolute difference in mean calories between the dessert and non-dessert holiday recipes.
 
-**Significance Level:** 0.05
+*Significance Level:* 0.05
 
 We chose to run a permutation test because we do not have access to the underlying population distribution, and we wanted to assess whether the two observed distributions—calorie content in desserts versus non-desserts—could plausibly come from the same population.
 
