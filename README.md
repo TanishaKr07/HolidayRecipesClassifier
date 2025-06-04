@@ -110,22 +110,143 @@ For this analysis, we compared the calorie distribvution of holiday desserts and
 
 ### Interesting Aggregates
 
----
+For this section, we investigated the relationship between recipe type (homemade or not), calorie group, and two key variables: average calories and average rating.
+We grouped the dataset by the homemade status (True or False) and cal_group (Low, Medium, High, Very High), followed by creating a summary table that displays the mean calorie count and mean user rating for each subgroup.
+
+|           |           |  calories    |  avg_rating  |
+| homemade  | cal_group | :--------    | :--------    | 
+| :-------- | :-------- |              |              |
+| False     | Low       |  84.729656   |   4.671719   |
+|           | Medium    |  203.754273  |   4.661790   |
+|           | High      |  351.186114  |   4.662766   |
+|           | Very High |  650.514378  |   4.646736   |
+| :-------- |:--------  | :--------    | :--------    |             
+| True      | Low       |  62.638462   |   4.734283   |
+|           | Medium    |  214.808333  |   4.699973   |
+|           | High      |  356.716667  |   4.713766   |
+|           | Very High |  618.090909  |   4.680204   |
+
+The resulting table shows some interesting patterns:
+
+1. As expected, calories increase steadily from the low to very high group for both homemade and non-homemade recipes.
+
+2. Homemade recipes consistently have slightly lower average calories across each calorie group, suggesting simpler or less dense ingredient profiles.
+
+3. Homemade recipes also tend to have slightly higher average ratings than non-homemade recipes across all calorie groups, which may reflect personal preference or bias toward familiar/home-cooked meals.
+
+This grouped summary allowed us to examine how nutritional content (calories) and user preferences (average ratings) vary across different calorie groups and homemade status, providing insight into potential patterns in recipe composition and user favorability.
 
 ## Assessment of Missingness
+The "review" column in our holiday recipes dataframe has a significant amount of missing values, so we decided to assess
+its missingness in relation to the other columns in the 
+dataframe.
+
+# NMAR Analysis
+We believe the missingness in the 'review' column is NMAR. This is because individuals who feel indifferent about a recipe are less likely to leave a review—they may feel there’s nothing noteworthy to share. In contrast, users with stronger emotional responses, whether positive or negative, are more motivated to take the time to leave a review. For instance, someone who thoroughly enjoyed a recipe is more likely to go through the effort of writing a positive review.
+
+# Missingness Dependency
+We examined the missingness of the 'review' column in our holiday
+recipes dataframe by testing the dependency of its missingness. We
+are investigating whether the missingness in the 'review' column
+depends on the 'minutes' column, which represents the preparation
+time of the recipe in minutes, and the "n_steps" column, which
+represents the number of steps in the recipe.
+
+**Reviews & Minutes**
+
+**Null Hypothesis:** The missingness of reviews does not depend on
+the minutes required to prepare the recipe.
+
+**Alternative Hypothesis:** The missingness of reviews does depend
+on the minutes required to prepare the recipe.
+
+**Test Statistic:** The absolute difference in mean in the minutes
+of the distribution of the group with missing reviews and the
+distribution of the group without missing reviews.
+
+**Significance Level:** 0.05
+
+**PLOTLY PLOT REQUIRED!!**
+
+We ran a permutation test by shuffling the missingness of reviews
+for 1000 times to collect 1000 simulating mean differences in the
+two distributions as described in the test statistic.
+
+The observed difference in minutes for the recipes with missing
+reviews v/s the recipes without missing reviews was 94.419. The
+resultant p-value of 0.034 was < 0.05 (our significance level).
+Therefore, we reject the null hypothesis, and conclude that the
+missingness of reviews does depend on the minutes required to
+prepare the recipe.
+
+One plausible explanation is that people may prefer quicker recipes, especially during the busy holiday season, and are more likely to leave reviews for recipes that are convenient and time-efficient.
+
+**Reviews & Number of Steps**
+
+**Null Hypothesis:** The missingness of reviews does not depend on
+the number of steps in the recipe.
+
+**Alternative Hypothesis:** The missingness of reviews does depend
+on the number of steps in the recipe.
+
+**Test Statistic:** The absolute difference in mean in the number
+of steps of the distribution of the group with missing reviews and the distribution of the group without missing reviews.
+
+**Significance Level:** 0.05
+
+We ran another permutation test by shuffling the missingness of review for 1000 times to collect 1000 simulating mean differences in the two distributions as described in the test statistic.
+
+The observed difference in the number of steps for the recipes 
+with missing reviews v/s the recipes without missing reviews was
+-0.389. The resultant p-value of 0.413 was > 0.05 (our significance level). Therefore, we fail to reject the null hypothesis, and conclude that the missingness of reviews does not depend on the number of steps in the recipe.
 
 
 ---
 
 ## Hypothesis Testing
 
+As mentioned in the introduction, we are curious about whether there is a statistically significant difference in the calorie content of dessert holiday recipes and non-dessert holiday recipes.
+
+By "dessert" holiday recipes, we are talking about the holiday recipes that explicitely had the keyword "dessert" as one of the tags in their "tags" column. For the purposes of our study, any holiday recipe that did not have the "dessert" tag was presumed to be "non-dessert", and classified as such.
+
+To investigate the question, we ran a permutation test with the following hypotheses, test statistic, and significance level.
+
+**Null Hypothesis:** Among holiday recipes, there is no significant difference in the calorie content between
+desserts and non-desserts.
+
+**Alternative Hypothesis:** Among holiday recipes, desserts and non-desserts have significantly different calorie content.
+
+**Test Statisic:** The absolute difference in mean calories between the dessert and non-dessert holiday recipes.
+
+**Significance Level:** 0.05
+
+We chose to run a permutation test because we do not have access to the underlying population distribution, and we wanted to assess whether the two observed distributions—calorie content in desserts versus non-desserts—could plausibly come from the same population.
+
+We anticipated that there would be a significant difference in calorie content between holiday dessert and non-dessert recipes, but the direction of this difference was not known in advance. On one hand, desserts are often high in sugar, which could contribute to higher calorie values. On the other hand, non-dessert holiday recipes—depending on ingredients like fats or starches—might contain more overall calories than desserts. Given this uncertainty, a two-sided permutation test was appropriate to determine whether the observed difference in means was statistically significant.
+
+For our test statistic, we chose the absolute difference in mean calorie content between dessert and non-dessert holiday recipes, rather than the raw difference. This is because our hypothesis is non-directional and we are not assuming which group has higher calories, only that a difference exists. Using the absolute difference allows us to properly evaluate this two-sided hypothesis.
+
+To run the test, we first split the data into two groups: desserts, which include recipes tagged as "dessert," and non-desserts, which include all other recipes. The observed difference in mean calorie content (dessert − non-dessert) was −19.59. 
+Note, while the observed difference is negative — indicating that, on average, dessert recipes have slightly fewer calories than non-desserts — this direction does not affect the conclusion of our permutation test, since we use the absolute value of the difference as our test statistic. This ensures our test remains two-sided, detecting any significant difference in mean calories regardless of which group is higher.
+
+Then we shuffled the 'dessert' and 'non-dessert' labels for 1000 times to collect 1000 simulating absolute mean differences in the two distributions as described in the test statistic. We got a p-value of 0.0.
+
+**Conclusion of Permutation Test**
+Since the p-value that we found (0.0) is less than the significance level of 0.05, we reject the null hypothesis. There is indeed a significant difference in the calorie content of dessert and non-dessert holiday recipes, with the observed statistic suggesting that non-desserts have a higher calorie content, on average. 
+One plausible explanation for this finding could be that non-dessert holiday dishes, such as main courses or rich sides—often include calorie-dense ingredients like oils, meats, and cheeses, which can outweigh the sugar content typically found in desserts.
+
 
 ---
 
 ## Framing a Prediction Problem
 
+We plan to predict the status of a holiday recipe as either "dessert" or "non-dessert" based on its overall calorie content and other relevant features. This constitutes a binary classification problem, as the model will be trained to predict one of two possible outcomes - dessert or non-dessert.
 
----
+In our earlier analysis, we identified a significant association between a recipe’s dessert status and its calorie content, suggesting that calorie-related features may be predictive of whether a recipe is a dessert or not. Thus, we aim to leverage this relationship to build a binary classifier.
+
+To evaluate our model, we use the F1 score rather than accuracy, due to the imbalance in our dataset, with there being significantly more non-dessert recipes than desserts. Relying solely on accuracy could result in misleadingly high performance if the model simply predicts the majority class. The F1 score, which balances precision and recall, is a more informative metric for imbalanced classification problems.
+
+The features available to us at prediction time include 'calories', 'avg_rating', 'n_steps', 'cal_group', and 'homemade'. All of these were either present in the original interactions or raw_recipes datasets or were derived from existing columns. Since these features describe the recipe itself and do not rely on user-generated data like reviews, they are practical for predicting dessert status even for new or unrated recipes.
 
 ## Baseline Model
 
