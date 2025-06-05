@@ -3,5 +3,9 @@ remote_theme: pages-themes/cayman@v0.2.0
 plugins:
   - jekyll-remote-theme
 
+sass:
+  style: compressed
+
+# Let Jekyll include custom scss
 include:
-  - assets/css/style.css
+  - assets/css/style.scss
