@@ -1,33 +1,18 @@
-:root {
-  --color-background: lavenderblush;
-  --color-primary: mediumvioletred;
-  --color-secondary: plum;
-  --color-accent: hotpink;
-  --color-text: #4b0082;
-}
+---
+---
 
-/* Override Cayman theme elements */
+@import "{{ site.theme }}";
+
+/* Your custom styles below */
 body {
-  background-color: var(--color-background);
-  color: var(--color-text);
-}
-
-a {
-  color: var(--color-primary);
+  background-color: lavenderblush;
 }
 
 .page-header {
-  background-color: var(--color-primary);
+  background-color: mediumvioletred;
   color: white;
 }
 
-.main-content h1, 
-.main-content h2, 
-.main-content h3 {
-  color: var(--color-secondary);
+a {
+  color: hotpink;
 }
-
-.main-content a {
-  color: var(--color-accent);
-}
-
