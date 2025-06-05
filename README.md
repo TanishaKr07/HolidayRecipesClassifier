@@ -248,11 +248,43 @@ The features available to us at prediction time include 'calories', 'avg_rating'
 
 ## Baseline Model
 
+For our baseline model, we are  utilizing a logistic regression classifier to predictt whehter a recipe is a dessert based on the calorie. The two features used were:
 
+1. `'calories'` 
+
+   - A quantitative numerical features representing the total calorie count for each recipe
+
+1. `'cal_group'` 
+
+   - An ordinal featrure thatt bins calories values into "Low", "Medium", "High", and "Very High" categories.
+
+We one-hot encoded `'cal_group'` using an `OrdinalEncoder` to preserve the calorie ranges. The dessert column served as the binary target label.
+
+After training the model, we observed thatt the model was heavily biased towards non-desserts. The F1 score for predicting non-desserts was 0.81, while the F1 score for predicting desserts was only 0.02. This is because the model predicted almost every recipe as a non-dessert, which can be proved by 99% showing up as False while only 1% for True. The reason for this could be that there are more recipes that are non-desserts than desserts. The overal accuracy was 0.68, but the macro-average F1 score was 0.41, which indicates poor performance on identifying desserts. This shows the limitation of using logistic regression with only calorie-based features as a baseline model, so for the final model we decided to implement a more comple model with additional features to improve performance. 
 ---
 
 ## Final Model
 
+For the final model, we used a random forest classifier using the following features: `'avg_rating', 'n_steps', 'calories', 'cal_group', 'homemade'`
+
+`'avg_rating'`
+This column represents the average rating a recipe has received. Based on our exploratory data analysis, we observed that there were a lot of 4 & 5 ratings. Because there could be a correlation to the average ratings with the amount of calories or sugar (which makes the recipe more likely to be a dessert), we included this feature. We standardized it using `StandardScaler` to normalize the scale and prevent it from overpowering other features.
+
+`'n_steps'`
+This column indicates the number of steps involved in making the recipe. _______________ We transformed this features using `QuantileTransformer`, which maps the values to a uniform distribution, which minimized thhe impact of etreme values while preserving the order and variation.
+
+`'calories'`
+The column provides the total calories for each recipe. From our bivariate comparisons, we noticed that desserts generally have lower calories content. We included this feature because it is our main determinant in the prediction model, like we have used it in our baseline model. We used `StandardScaler` to bring the values to a comparable scale across recipes.. SO IM NOT SURE IF WE NEED THIS BECAUSE WE ALREADY MOVED THE OUTLIERS...????
+
+`'cal_group'`
+This is an ordinal feature created by binning the `'calories'` column into four quantiles labeled as "Low", "Medium", "High", and "Very High". We one-hot encoded this feature similar to what we did in our baseline model.
+
+`'homemade'`
+This boolean feature indicates whether the recipe is tagged as `'homemade'` in the `'tags'` column. We assumed that homemade recipes may have distinctive characteristis (example: more steps, fewer processed ingredients) that are mmore common in desserts. Also, people visit this site to cook homemade meals. So although this feature may not be very useful, we wanted to add another feature that the model could test with. We encoded this feature using `OneHotEncoder`.
+
+We used `RandomForestClassifier` as our modeling algorithm and used `GridSearchCV` to tune two key hyuperparameters `max_depth` and `n_estimators`. These hyperparameters control the depth of each tree and the number of trees in the forest which help reduced overfitting and manage variance. The best combination for those parameters were 10 `max_depth` and 100 for `n_estimators`.
+
+The F1 Score for the final model was 0.58 (macro-average), which is a substantial improvement from tthe baseline model's F1 score of 0.41. We saw a significant improvement in the F1 score for predicting desserts (True), which increased from 0.02 to 0.46, and the recal rose from 0.01 to 0.52. The model is now significantly better at identifying desserts while aintaing the performance on non-desserts. These resulut validate the impact of our feature engineering and hyperparameter tuning.
 
 ---
 
