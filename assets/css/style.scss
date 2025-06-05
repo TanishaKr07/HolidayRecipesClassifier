@@ -1,15 +1,33 @@
-$background-color: lavenderblush;
-$text-color: #4b0082; /* indigo */
-$brand-color: hotpink;
-$link-color: mediumvioletred;
-@import "{{ site.theme }}";
+:root {
+  --color-background: lavenderblush;
+  --color-primary: mediumvioletred;
+  --color-secondary: plum;
+  --color-accent: hotpink;
+  --color-text: #4b0082;
+}
 
-/* Optional: Add more overrides */
+/* Override Cayman theme elements */
 body {
-  background-color: $background-color;
-  color: $text-color;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 a {
-  color: $link-color;
+  color: var(--color-primary);
 }
+
+.page-header {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.main-content h1, 
+.main-content h2, 
+.main-content h3 {
+  color: var(--color-secondary);
+}
+
+.main-content a {
+  color: var(--color-accent);
+}
+
