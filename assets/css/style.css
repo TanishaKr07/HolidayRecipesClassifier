@@ -1,0 +1,12 @@
+body {
+  background-color: lavenderblush !important;
+}
+
+.page-header {
+  background-color: mediumvioletred !important;
+  color: white !important;
+}
+
+a {
+  color: hotpink !important;
+}
