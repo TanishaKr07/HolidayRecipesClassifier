@@ -268,7 +268,7 @@ After training the model, we observed that the model was heavily biased towards 
 
 Before creating our final model, we wanted to see if we could improve our decision tree model from our baseline model. To do this we added the following features:
 
-The F1 score improved immensely. 
+The F1 score improved immensely. tan
 
 
 
