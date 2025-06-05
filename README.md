@@ -261,6 +261,7 @@ For our baseline model, we are  utilizing a logistic regression classifier to pr
 We one-hot encoded `'cal_group'` using an `OrdinalEncoder` to preserve the calorie ranges. The dessert column served as the binary target label.
 
 After training the model, we observed thatt the model was heavily biased towards non-desserts. The F1 score for predicting non-desserts was 0.81, while the F1 score for predicting desserts was only 0.02. This is because the model predicted almost every recipe as a non-dessert, which can be proved by 99% showing up as False while only 1% for True. The reason for this could be that there are more recipes that are non-desserts than desserts. The overal accuracy was 0.68, but the macro-average F1 score was 0.41, which indicates poor performance on identifying desserts. This shows the limitation of using logistic regression with only calorie-based features as a baseline model, so for the final model we decided to implement a more comple model with additional features to improve performance. 
+
 ---
 
 ## Final Model
