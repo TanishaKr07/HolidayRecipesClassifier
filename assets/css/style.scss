@@ -1,0 +1,15 @@
+$background-color: lavenderblush;
+$text-color: #4b0082; /* indigo */
+$brand-color: hotpink;
+$link-color: mediumvioletred;
+@import "{{ site.theme }}";
+
+/* Optional: Add more overrides */
+body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+a {
+  color: $link-color;
+}
