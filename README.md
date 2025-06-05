@@ -248,7 +248,7 @@ The features available to us at prediction time include 'calories', 'avg_rating'
 
 ## Baseline Model
 
-For our baseline model, we are  utilizing a logistic regression classifier to predictt whehter a recipe is a dessert based on the calorie. The two features used were:
+For our baseline model, we are  utilizing a decision tree classifier to predict whehter a recipe is a dessert based on the calorie. The two features used were:
 
 1. `'calories'` 
 
@@ -260,11 +260,17 @@ For our baseline model, we are  utilizing a logistic regression classifier to pr
 
 We one-hot encoded `'cal_group'` using an `OrdinalEncoder` to preserve the calorie ranges. The dessert column served as the binary target label.
 
-After training the model, we observed thatt the model was heavily biased towards non-desserts. The F1 score for predicting non-desserts was 0.81, while the F1 score for predicting desserts was only 0.02. This is because the model predicted almost every recipe as a non-dessert, which can be proved by 99% showing up as False while only 1% for True. The reason for this could be that there are more recipes that are non-desserts than desserts. The overal accuracy was 0.68, but the macro-average F1 score was 0.41, which indicates poor performance on identifying desserts. This shows the limitation of using logistic regression with only calorie-based features as a baseline model, so for the final model we decided to implement a more comple model with additional features to improve performance. 
+After training the model, we observed that the model was heavily biased towards non-desserts. The F1 score for predicting non-desserts was 0.81, while the F1 score for predicting desserts was only 0.02. This is because the model predicted almost every recipe as a non-dessert, which can be proved by 99% showing up as False while only 1% for True. The reason for this could be that there are more recipes that are non-desserts than desserts. The overal accuracy was 0.68, but the macro-average F1 score was 0.41, which indicates poor performance on identifying desserts. This shows the limitation of using a decision tree with only calorie-based features as a baseline model, so for the final model we decided to implement a more complex model with additional features to improve performance. 
 
 ---
 
 ## Final Model
+
+Before creating our final model, we wanted to see if we could improve our decision tree model from our baseline model. To do this we added the following features:
+
+The F1 score improved immensely. 
+
+
 
 For the final model, we used a random forest classifier using the following features: `'avg_rating', 'n_steps', 'calories', 'cal_group', 'homemade'`
 
@@ -291,5 +297,20 @@ The F1 Score for the final model was 0.58 (macro-average), which is a substantia
 
 ## Fairness and Analysis
 
+For our fairness analysis, we split the recipes into two groups: high calories and low calories. We designated low calorie recipes to be the ones that were categorized as "Low" and "Medium", and high calorie recipes to be from the "High" and "Very High" categories. As mentioned above, these bins were created by binning them into quartiles, which means the two groups are divided by the median. We used median instead of mean, because we previously found that calories had many high outliers which can skew our results. We chose to evaluate the **precision parity** of the mdoel for the two groups, because we think it is more important for the model to correctly identify whether the recipe is a dessert or not. False positives would not be good since it would mislead users with the incorrectly labeled recipe. For example, if we predicted a recipe with lower calories to be a non-dessert, people searching specifically for healthier dessert options may overlook these low-calorie desserts.
+
+**Null Hypothesis:** Our model is fair. Its precision for recipes with higher calories and lower calories are roughly the same, and any differences are due to random chance.
+
+**Alternative Hypothesis:** Our model is unfair. Its precision for recipes with lower calories is lower than its precision for recipes with higher calories.
+
+**Test Statistic:** Difference in precision (low calories - high calories)
+
+**Significance Level:** 0.05
+
+#RUN THE ANALYSIS AND PUT IN PLOTLY
+
+To run the permutation test, we created a new column `shuffled_group` to differentiate between the low and high calorie recipes.
+
+. When we took the difference in their precision, we got an observed test statistic of  -0.115. We shuffled the `shuffled_group` column 1000 times to collect 1000 simulating differences in the two distributions as described in the test statistic. After running the permuation test, we got a p-value of 0.002. Since the p-value of 0.002 is less than 0.05. We reject the null hypotheis that our model is fair. The model's precision for recipes with lower calories is lower than its precision for recipes with high 
 
 ---
