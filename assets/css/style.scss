@@ -1,18 +1,13 @@
 ---
 ---
 
-@import "jekyll-theme-cayman"; // inherit Cayman’s original styles
+@import "jekyll-theme-cayman";
 
-/* Custom girly palette 🎀 */
+// Now override Cayman variables or selectors:
+$header-bg-color: mediumvioletred;
+$header-bg-color-secondary: hotpink;
+$section-headings-color: white;
+
 body {
   background-color: lavenderblush;
-}
-
-.page-header {
-  background-color: mediumvioletred;
-  color: white;
-}
-
-a {
-  color: hotpink;
 }
