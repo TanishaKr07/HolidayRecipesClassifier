@@ -8,3 +8,8 @@ sass:
 
 include:
   - assets/css/style.scss
+
+color:
+  header: "#000"
+  gradient_left: "#d57ad5"
+  gradient_right: "#ffb6c1"
