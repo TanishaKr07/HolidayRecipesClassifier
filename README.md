@@ -305,7 +305,12 @@ For our fairness analysis, we split the recipes into two groups: high calories a
 
 **Significance Level:** 0.05
 
-#RUN THE ANALYSIS AND PUT IN PLOTLY
+<iframe
+  src="assets/fairness_analysis.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 To run the permutation test, we created a new column `shuffled_group` to differentiate between the low and high calorie recipes.
 
