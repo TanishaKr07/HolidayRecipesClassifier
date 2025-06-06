@@ -1,32 +1,9 @@
----
----
----
----
+// Set custom color palette
+$body-text-color: hotpink !default;
+$section-headings-color: hotpink !default;
 
-/* 🎀 Override Cayman theme variables before importing it */
-$header-heading-color: white;
-$section-headings-color: hotpink;
-$body-text-color: hotpink;
+$header-heading-color: white !default;
+$header-bg-color: #d57ad5 !default; // pinkish-purple
+$header-bg-color-secondary: #ffb6c1 !default; // light pink
 
-$header-bg-color: mediumvioletred;
-$header-bg-color-secondary: hotpink;
-
-@import "jekyll-theme-cayman";
-
-/* 🌸 Optional: override specific tags */
-body {
-  background-color: lavenderblush;
-  color: $body-text-color;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: $section-headings-color;
-}
-
-a {
-  color: deeppink;
-}
-
-.page-header {
-  background-image: linear-gradient(120deg, mediumvioletred, hotpink) !important;
-}
+@import 'jekyll-theme-cayman';
