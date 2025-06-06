@@ -1,3 +1,9 @@
+# Dessert or Not? A Recipe for Classification
+
+by Minyoung Kim and Tanisha Kumar
+
+---
+
 ## Overview
 
 This data science project, conducted at UCSD, focuses on Holiday recipes and explores the relationship between the feature 'calories' and whether the recipe is a dessert or non-dessert. As we could say, this project was not a piece of cake! 🍰
