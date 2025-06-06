@@ -1,5 +1,6 @@
 
 title: Dessert or Not? A Recipe for Classification
+description: by Minyoung Kim and Tanish Kumar
 
 remote_theme: tuur29/pages-themes-cayman
 
@@ -16,5 +17,5 @@ include:
 
 color:
   header: "#000"
-  gradient_left: "ff7da7"
-  gradient_right: "#ffd3de"
+  gradient_left: "#d57ad5"
+  gradient_right: "#ffb6c1"
