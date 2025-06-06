@@ -1,6 +1,5 @@
 
-title: Custom Cayman theme
-description: Cayman is a clean, responsive theme for GitHub Pages.
+title: Dessert or Not? A Recipe for Classification
 
 remote_theme: tuur29/pages-themes-cayman
 
@@ -17,5 +16,5 @@ include:
 
 color:
   header: "#000"
-  gradient_left: "#d57ad5"
-  gradient_right: "#ffb6c1"
+  gradient_left: "ff7da7"
+  gradient_right: "#ffd3de"
