@@ -16,6 +16,6 @@ include:
   - assets/css/style.scss
 
 color:
-  header: "#000"
+  header: "#FFFFFF"
   gradient_left: "#EE0A67"
   gradient_right: "#FEA1BE"
