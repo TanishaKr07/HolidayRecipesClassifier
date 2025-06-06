@@ -51,7 +51,7 @@ The second dataset, `interactions`, contains 731927 rows and each row contains a
 
 To make our analysis of the dataset more efficient and convenient, we conducted the following data cleaning steps.
 
-1. Left merge the recipes and interactions datasets on id and recipe_id.
+1. Left merge the recipes and interactions datasets on `'id'` and `'recipe_id'`.
 
    - This step helps match the unique recipes with their rating and review.
 
@@ -156,7 +156,7 @@ its missingness in relation to the other columns in the
 dataframe.
 
 # NMAR Analysis
-We believe the missingness in the `'review'` column is NMAR. This is because individuals who feel indifferent about a recipe are less likely to leave a review—they may feel there’s nothing noteworthy to share. In contrast, users with stronger emotional responses, whether positive or negative, are more motivated to take the time to leave a review. For instance, someone who thoroughly enjoyed a recipe is more likely to go through the effort of writing a positive review.
+We believe the missingness in the `'review'` column is NMAR. This is because individuals who feel indifferent about a recipe are less likely to leave a review. In contrast, users with stronger emotional responses are more motivated to take the time to leave a review. For instance, someone who thoroughly enjoyed a recipe is more likely to go through the effort of writing a positive review.
 
 # Missingness Dependency
 We examined the missingness of the `'review'` column in our holiday recipes dataframe by testing the dependency of its missingness. We are investigating whether the missingness in the `'review'` column depends on the `'minutes'` column, which represents the preparation time of the recipe in minutes, and the `'n_steps'` column, which represents the number of steps in the recipe.
@@ -204,7 +204,7 @@ The observed difference in the number of steps for the recipes with missing revi
 
 As mentioned in the introduction, we are curious about whether there is a statistically significant difference in the calorie content of dessert holiday recipes and non-dessert holiday recipes.
 
-By "dessert" holiday recipes, we are talking about the holiday recipes that explicitely had the keyword "dessert" as one of the tags in their "tags" column. For the purposes of our study, any holiday recipe that did not have the "dessert" tag was presumed to be "non-dessert", and classified as such.
+By "dessert" holiday recipes, we are talking about the holiday recipes that explicitely had the keyword "dessert" as one of the tags in their "tags" column. For the purposes of our study, any holiday recipe that did not have the `'dessert'` tag was presumed to be `'non-dessert'`, and classified as such.
 
 To investigate the question, we ran a permutation test with the following hypotheses, test statistic, and significance level.
 
@@ -217,26 +217,26 @@ desserts and non-desserts.
 
 **Significance Level:** 0.05
 
-We chose to run a permutation test because we do not have access to the underlying population distribution, and we wanted to assess whether the two observed distributions—calorie content in desserts versus non-desserts—could plausibly come from the same population.
+We chose to run a permutation test because we do not have access to the underlying population distribution, and we wanted to assess whether the two observed distributions could possibly come from the same population.
 
-We anticipated that there would be a significant difference in calorie content between holiday dessert and non-dessert recipes, but the direction of this difference was not known in advance. On one hand, desserts are often high in sugar, which could contribute to higher calorie values. On the other hand, non-dessert holiday recipes—depending on ingredients like fats or starches—might contain more overall calories than desserts. Given this uncertainty, a two-sided permutation test was appropriate to determine whether the observed difference in means was statistically significant.
+We anticipated that there would be a significant difference in calorie content between holiday dessert and non-dessert recipes, but the direction of this difference was not known in advance. On one hand, desserts are often high in sugar, which could contribute to higher calorie values. On the other hand, non-dessert holiday recipes, depending on ingredients like fats or starches, might contain more overall calories than desserts. Given this uncertainty, a two-sided permutation test was appropriate to determine whether the observed difference in means was statistically significant.
 
 For our test statistic, we chose the absolute difference in mean calorie content between dessert and non-dessert holiday recipes, rather than the raw difference. This is because our hypothesis is non-directional and we are not assuming which group has higher calories, only that a difference exists. Using the absolute difference allows us to properly evaluate this two-sided hypothesis.
 
-To run the test, we first split the data into two groups: desserts, which include recipes tagged as "dessert," and non-desserts, which include all other recipes. The observed difference in mean calorie content (dessert − non-dessert) was −19.59. Note, while the observed difference is negative, this direction does not affect the conclusion of our permutation test, since we use the absolute value of the difference as our test statistic. This ensures our test remains two-sided, detecting any significant difference in mean calories regardless of which group is higher.
+To run the test, we first split the data into two groups: desserts, which include recipes tagged as `'dessert'`, and non-desserts, which include all other recipes. The observed difference in mean calorie content (dessert − non-dessert) was −19.59. Note, while the observed difference is negative, this direction does not affect the conclusion of our permutation test, since we use the absolute value of the difference as our test statistic. This ensures our test remains two-sided, detecting any significant difference in mean calories regardless of which group is higher.
 
 Then we shuffled the `dessert` and `non-dessert` labels for 1000 times to collect 1000 simulating absolute mean differences in the two distributions as described in the test statistic. We got a p-value of 0.0.
 
 **Conclusion of Permutation Test**
 Since the p-value that we found (0.0) is less than the significance level of 0.05, we reject the null hypothesis. There is indeed a significant difference in the calorie content of dessert and non-dessert holiday recipes, with the observed statistic suggesting that non-desserts have a higher calorie content, on average. 
-One plausible explanation for this finding could be that non-dessert holiday dishes, such as main courses or rich sides—often include calorie-dense ingredients like oils, meats, and cheeses, which can outweigh the sugar content typically found in desserts.
+One plausible explanation for this finding could be that non-dessert holiday dishes, such as main courses or rich sides, often include calorie-dense ingredients like oils, meats, and cheeses, which can outweigh the sugar content typically found in desserts.
 
 
 ---
 
 ## Framing a Prediction Problem
 
-We plan to predict the status of a holiday recipe as either "dessert" or "non-dessert" based on its overall calorie content and other relevant features. This constitutes a binary classification problem, as the model will be trained to predict one of two possible outcomes - dessert or non-dessert.
+We plan to predict the status of a holiday recipe as either "dessert" or "non-dessert" based on its overall calorie content and other relevant features. This constitutes a binary classification problem, as the model will be trained to predict one of two possible outcomes: dessert or non-dessert.
 
 In our earlier analysis, we identified a significant association between a recipe’s dessert status and its calorie content, suggesting that calorie-related features may be predictive of whether a recipe is a dessert or not. Thus, we aim to leverage this relationship to build a binary classifier.
 
@@ -250,7 +250,7 @@ For our baseline model, we are  utilizing a decision tree classifier to predict 
 
 1. `'calories'` 
 
-   - A quantitative numerical features representing the total calorie count for each recipe
+   - A quantitative numerical features representing the total calorie count for each recipe.https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FFNDWNNzkRKGqGzvTJTgDjtPLGgrptFB
 
 1. `'cal_group'` 
 
@@ -266,9 +266,7 @@ After training the model, we observed that the model was heavily biased towards 
 
 Before creating our final model, we wanted to see if we could improve our decision tree model from our baseline model. To do this we added the following features:
 
-The F1 score improved immensely. tan
-
-
+The F1 score improved immensely. The improved decision tree increased the F1 score for identifying desserts from 0.02 to 0.48. So the decision tree is now slightly more sensitive to detecting desserts. However, we wanted to improve the overal performance across most evaluation metrics. So we decided to utilize a random forest classifier.
 
 For the final model, we used a random forest classifier using the following features: `'avg_rating', 'n_steps', 'calories', 'cal_group', 'homemade'`
 
@@ -289,7 +287,7 @@ This boolean feature indicates whether the recipe is tagged as `'homemade'` in t
 
 We used `RandomForestClassifier` as our modeling algorithm and used `GridSearchCV` to tune two key hyuperparameters `max_depth` and `n_estimators`. These hyperparameters control the depth of each tree and the number of trees in the forest which help reduced overfitting and manage variance. The best combination for those parameters were 10 `max_depth` and 100 for `n_estimators`.
 
-The F1 Score for the final model was 0.58 (macro-average), which is a substantial improvement from tthe baseline model's F1 score of 0.41. We saw a significant improvement in the F1 score for predicting desserts (True), which increased from 0.02 to 0.46, and the recal rose from 0.01 to 0.52. The model is now significantly better at identifying desserts while aintaing the performance on non-desserts. These resulut validate the impact of our feature engineering and hyperparameter tuning.
+The F1 Score for the final model was 0.60 (macro-average), which is a substantial improvement from the baseline model's F1 score of 0.41. We saw a significant improvement in the F1 score for predicting desserts (True), which increased from 0.02 to 0.48, and the recall rose from 0.01 to 0.52. The model is now significantly better at identifying desserts while maintaining the performance on non-desserts. These resulut validate the impact of our feature engineering and hyperparameter tuning.
 
 ---
 
