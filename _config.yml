@@ -17,5 +17,5 @@ include:
 
 color:
   header: "#000"
-  gradient_left: "#d57ad5"
-  gradient_right: "#ffb6c1"
+  gradient_left: "#EE0A67"
+  gradient_right: "#FEA1BE"
