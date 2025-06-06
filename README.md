@@ -250,7 +250,7 @@ For our baseline model, we are  utilizing a decision tree classifier to predict 
 
 1. `'calories'` 
 
-   - A quantitative numerical features representing the total calorie count for each recipe.https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FFNDWNNzkRKGqGzvTJTgDjtPLGgrptFB
+   - A quantitative numerical features representing the total calorie count for each recipe.
 
 1. `'cal_group'` 
 
