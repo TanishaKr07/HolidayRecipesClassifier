@@ -1,13 +1,32 @@
 ---
 ---
+---
+---
+
+/* 🎀 Override Cayman theme variables before importing it */
+$header-heading-color: white;
+$section-headings-color: hotpink;
+$body-text-color: hotpink;
+
+$header-bg-color: mediumvioletred;
+$header-bg-color-secondary: hotpink;
 
 @import "jekyll-theme-cayman";
 
-// Now override Cayman variables or selectors:
-$header-bg-color: mediumvioletred;
-$header-bg-color-secondary: hotpink;
-$section-headings-color: white;
-
+/* 🌸 Optional: override specific tags */
 body {
   background-color: lavenderblush;
+  color: $body-text-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $section-headings-color;
+}
+
+a {
+  color: deeppink;
+}
+
+.page-header {
+  background-image: linear-gradient(120deg, mediumvioletred, hotpink) !important;
 }
